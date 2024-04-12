@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { createCookie } from '../../cookieLib';
 const authFormSchema = z.object({
     email: z.string().min(2).max(50),
     password: z.string().min(4).max(50)
@@ -23,10 +23,6 @@ const authFormSchema = z.object({
 
 
 const AuthForm = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loginError, setLoginError] = useState('');
-
     // 1. Define your form.
     const form = useForm<z.infer<typeof authFormSchema>>({
         resolver: zodResolver(authFormSchema),
@@ -36,6 +32,8 @@ const AuthForm = () => {
     async function onSubmit(values: z.infer<typeof authFormSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        const email = values.email;
+        const password = values.password;
 
         const config = {
             method: 'post',
@@ -52,10 +50,9 @@ const AuthForm = () => {
         try {
             const response = await axios.request(config);
             console.log(response.data);
-            // Handle successful login here (e.g., redirect, store token)
+            createCookie("token", response.data.token);
         } catch (error) {
             console.error(error);
-            setLoginError('Failed to login. Please check your credentials and try again.');
         }
 
         console.log(values)
