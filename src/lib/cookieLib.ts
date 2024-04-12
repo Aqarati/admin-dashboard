@@ -10,3 +10,8 @@ export async function getCookie(name:string) {
     const token = cookieStore.get('token');
     console.log(token);
 }
+export async function deleteCookie(name:string) {
+    const cookieStore = cookies()
+    const token = cookieStore.delete('token');
+    console.log(token);
+}

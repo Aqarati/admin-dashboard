@@ -15,7 +15,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { createCookie } from '../../cookieLib';
+import { createCookie } from '@/lib/cookieLib';
 const authFormSchema = z.object({
     email: z.string().min(2).max(50),
     password: z.string().min(4).max(50)
