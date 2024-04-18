@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { createCookie } from '@/lib/cookieLib';
+import { api_path } from '@/lib/utils';
 const authFormSchema = z.object({
     email: z.string().min(2).max(50),
     password: z.string().min(4).max(50)
@@ -37,7 +38,7 @@ const AuthForm = () => {
 
         const config = {
             method: 'post',
-            url: 'http://localhost:8888/auth/signin',
+            url: api_path + '/auth/signin',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -50,6 +51,7 @@ const AuthForm = () => {
         try {
             const response = await axios.request(config);
             console.log(response.data);
+
             createCookie("token", response.data.token);
         } catch (error) {
             console.error(error);

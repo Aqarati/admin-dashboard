@@ -1,4 +1,3 @@
-import { deleteCookie } from "@/lib/cookieLib";
 import { LogOut } from "lucide-react";
 import LogoutButton from "./components/logoutButton";
 
