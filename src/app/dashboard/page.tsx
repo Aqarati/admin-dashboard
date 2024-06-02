@@ -5,11 +5,10 @@ const Page = () => {
 
     return (
         <>
-            <h1>Document </h1>
-            <div className="flex justify-center items-center h-screen ">
-                <DocumentCarousel />
-            </div>
-            <h2>TRsea</h2>
+            <h1 className='text-center'>Document</h1>
+            <br />
+            <br />
+            <DocumentCarousel />
 
         </>
 
